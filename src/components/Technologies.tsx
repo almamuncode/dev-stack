@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import type { TechDataType } from '../types/types';
 import Technology from './Technology';
 import YourStack from './YourStack';
@@ -11,7 +11,18 @@ interface TechnologiesProps {
 const Technologies = ({ promiseData }: TechnologiesProps) => {
     const technologies = use(promiseData)
 
-    console.log(technologies)
+    const [selectedTechs, setSelectedTechs] = useState<TechDataType[]>([]);
+
+    const handleAddToStack = (tech: TechDataType) => {
+        setSelectedTechs((prev) => [...prev, tech]);
+    };
+
+    const handleDeleteFromStack = (id: number) => {
+    setSelectedTechs((prev) =>
+        prev.filter((tech) => tech.id !== id)
+    );
+};
+
     return (
         <div className='container mx-auto '>
             <div className='container mx-auto col-span-3'>
@@ -24,12 +35,12 @@ const Technologies = ({ promiseData }: TechnologiesProps) => {
                         <div className='grid grid-cols-3 gap-10'>
                             {
                                 technologies.map((tech) => (
-                                    <Technology tech={tech} key={tech.id} />
+                                    <Technology tech={tech} key={tech.id} handleAddToStack={handleAddToStack} selectedTechs={selectedTechs}/>
                                 ))
                             }
                         </div>
                     </div>
-                    <YourStack></YourStack>
+                    <YourStack selectedTechs={selectedTechs} handleDeleteFromStack={handleDeleteFromStack}></YourStack>
                 </div>
             </div>
         </div>
