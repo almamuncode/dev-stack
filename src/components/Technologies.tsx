@@ -2,6 +2,7 @@ import { use, useState } from 'react';
 import type { TechDataType } from '../types/types';
 import Technology from './Technology';
 import YourStack from './YourStack';
+import { Bounce, toast } from 'react-toastify';
 
 interface TechnologiesProps {
     promiseData: Promise<TechDataType[]>;
@@ -12,21 +13,56 @@ interface TechnologiesProps {
 const Technologies = ({ promiseData }: TechnologiesProps) => {
     const technologies = use(promiseData)
 
-const [selectedTechs, setSelectedTechs] = useState<TechDataType[]>([]);
+    const [selectedTechs, setSelectedTechs] = useState<TechDataType[]>([]);
 
-const handleAddToStack = (tech: TechDataType) => {
-    setSelectedTechs((prev) => [...prev, tech]);
-};
+    const handleAddToStack = (tech: TechDataType) => {
+        setSelectedTechs((prev) => [...prev, tech]);
+        toast.success(`${tech.name} has been added to your Stack`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    };
 
-const handleDeleteFromStack = (id: number) => {
+  const handleDeleteFromStack = (id: number) => {
+    const tech = selectedTechs.find((item) => item.id === id);
+
     setSelectedTechs((prev) =>
-        prev.filter((tech) => tech.id !== id)
+        prev.filter((item) => item.id !== id)
     );
+
+    toast.info(`${tech?.name ?? "Technology"} has been removed from your Stack`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+    });
 };
 
-const handleRemoveAll = () => {
-    setSelectedTechs([]);
-};
+    const handleRemoveAll = () => {
+        setSelectedTechs([]);
+        toast.info(`All Stacks has been removed from your Stack`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    };
 
     return (
         <div className='container mx-auto px-4 sm:px-6'>
@@ -40,7 +76,7 @@ const handleRemoveAll = () => {
                         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
                             {
                                 technologies.map((tech) => (
-                                    <Technology tech={tech} key={tech.id} handleAddToStack={handleAddToStack} selectedTechs={selectedTechs}/>
+                                    <Technology tech={tech} key={tech.id} handleAddToStack={handleAddToStack} selectedTechs={selectedTechs} />
                                 ))
                             }
                         </div>
