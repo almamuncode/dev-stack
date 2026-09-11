@@ -12,6 +12,12 @@ const Footer = () => {
                     Curated tools, technologies, and resources <br /> for developers building
                     modern software.
                 </p>
+
+                <div className='flex gap-4 font-semibold mt-3'>
+                    <a className="link link-hover">Github</a>
+                    <a className="link link-hover">Twitter</a>
+                    <a className="link link-hover">Linkedin</a>
+                </div>
             </div>
             <div>
                 <h3 className="font-semibold">PRODUCT</h3>
