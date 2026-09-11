@@ -3,7 +3,8 @@ import logo from '../assets/logo-text.png'
 
 const Footer = () => {
     return (
-        <div>
+        <div className='mt-30'>
+            <div className="divider"></div>
             <footer className="container mx-auto footer sm:footer-horizontal text-base-content p-10">
             <div>
                 <img src={logo} alt="" />

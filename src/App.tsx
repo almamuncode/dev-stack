@@ -23,7 +23,7 @@ function App() {
      <Suspense fallback={<p>Loading</p>}>
       <Technologies promiseData={promiseData}></Technologies>
      </Suspense>
-     <div className="divider"></div>
+    
      <Footer></Footer>
   
     </>
