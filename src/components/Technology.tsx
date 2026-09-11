@@ -1,6 +1,7 @@
 import React from 'react';
 import type { TechDataType } from '../types/types';
 import { FaStar } from 'react-icons/fa';
+import { LuCheck } from 'react-icons/lu';
 
 interface TechnologyProps {
   tech: TechDataType;
@@ -43,7 +44,7 @@ const Technology = ({ tech, handleAddToStack, selectedTechs }: TechnologyProps) 
                 <p className='font-medium flex items-center gap-1'><span><FaStar className='text-orange-300' /></span> {tech.rating}</p>
             </div>
             <button onClick={()=>handleAddToStack(tech)} className='btn btn-neutral mt-auto w-full rounded-xl' disabled={isAdded}>
-                {isAdded ? "Added already" : "Add to Stack"}
+                {isAdded ? <p className='flex items-center gap-1 text-dev-gradient'><span><LuCheck className='text-xl text-purple-500' /></span>Added to Stock</p>: "Add to Stack"}
             </button>
         </div>
     );

@@ -5,12 +5,10 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 interface YourStackProps {
     selectedTechs: TechDataType[];
     handleDeleteFromStack: (id: number) => void;
+    handleRemoveAll: () => void;
 }
 
-const YourStack = ({
-    selectedTechs,
-    handleDeleteFromStack,
-}: YourStackProps) => {
+const YourStack = ({selectedTechs, handleDeleteFromStack, handleRemoveAll}: YourStackProps) => {
     return (
         <div className="h-fit rounded-2xl border border-gray-300 p-5">
             <h1 className="text-2xl font-bold">Your Stack</h1>
@@ -37,7 +35,7 @@ const YourStack = ({
                                     <h2 className="font-semibold">{tech.name}</h2>
                                 </div>
 
-                                <div className="text-red-500 text-xl cursor-pointer"
+                                <div className="text-fuchsia-600 cursor-pointer"
                                     onClick={() => handleDeleteFromStack(tech.id)}>
                                     <RiDeleteBin6Line />
                                 </div>
@@ -50,6 +48,7 @@ const YourStack = ({
                     ))}
                 </div>
             )}
+            <button className="btn btn-outline btn-error mt-4 w-full rounded-xl" onClick={handleRemoveAll}>Remove All</button>
         </div>
     );
 };

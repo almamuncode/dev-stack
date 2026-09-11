@@ -5,22 +5,27 @@ import YourStack from './YourStack';
 
 interface TechnologiesProps {
     promiseData: Promise<TechDataType[]>;
+
 }
 
 
 const Technologies = ({ promiseData }: TechnologiesProps) => {
     const technologies = use(promiseData)
 
-    const [selectedTechs, setSelectedTechs] = useState<TechDataType[]>([]);
+const [selectedTechs, setSelectedTechs] = useState<TechDataType[]>([]);
 
-    const handleAddToStack = (tech: TechDataType) => {
-        setSelectedTechs((prev) => [...prev, tech]);
-    };
+const handleAddToStack = (tech: TechDataType) => {
+    setSelectedTechs((prev) => [...prev, tech]);
+};
 
-    const handleDeleteFromStack = (id: number) => {
+const handleDeleteFromStack = (id: number) => {
     setSelectedTechs((prev) =>
         prev.filter((tech) => tech.id !== id)
     );
+};
+
+const handleRemoveAll = () => {
+    setSelectedTechs([]);
 };
 
     return (
@@ -40,7 +45,7 @@ const Technologies = ({ promiseData }: TechnologiesProps) => {
                             }
                         </div>
                     </div>
-                    <YourStack selectedTechs={selectedTechs} handleDeleteFromStack={handleDeleteFromStack}></YourStack>
+                    <YourStack selectedTechs={selectedTechs} handleDeleteFromStack={handleDeleteFromStack} handleRemoveAll={handleRemoveAll}></YourStack>
                 </div>
             </div>
         </div>
