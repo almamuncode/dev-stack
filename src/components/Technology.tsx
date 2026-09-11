@@ -1,12 +1,11 @@
-import React from 'react';
 import type { TechDataType } from '../types/types';
 import { FaStar } from 'react-icons/fa';
 import { LuCheck } from 'react-icons/lu';
 
 interface TechnologyProps {
-  tech: TechDataType;
-  handleAddToStack: (tech: TechDataType) => void;
-  selectedTechs: TechDataType[];
+    tech: TechDataType;
+    handleAddToStack: (tech: TechDataType) => void;
+    selectedTechs: TechDataType[];
 }
 
 const Technology = ({ tech, handleAddToStack, selectedTechs }: TechnologyProps) => {
@@ -14,7 +13,8 @@ const Technology = ({ tech, handleAddToStack, selectedTechs }: TechnologyProps) 
         (item) => item.id === tech.id
     );
     return (
-        <div className='container mx-auto flex h-full flex-col border p-5 rounded-2xl border-gray-300'>
+        <div
+            className={`container mx-auto flex h-full flex-col rounded-2xl border p-5 ${isAdded ? "border-purple-600" : "border-gray-300" }`}>
             <div className='flex justify-between'>
                 <img className='w-8' src={tech.icon} alt="Tech Icon" />
                 <p className={`badge badge-soft ${tech.badge === "Popular"
@@ -43,8 +43,8 @@ const Technology = ({ tech, handleAddToStack, selectedTechs }: TechnologyProps) 
                 <p>{tech.difficulty}</p>
                 <p className='font-medium flex items-center gap-1'><span><FaStar className='text-orange-300' /></span> {tech.rating}</p>
             </div>
-            <button onClick={()=>handleAddToStack(tech)} className='btn btn-neutral mt-auto w-full rounded-xl' disabled={isAdded}>
-                {isAdded ? <p className='flex items-center gap-1 text-dev-gradient'><span><LuCheck className='text-xl text-purple-500' /></span>Added to Stock</p>: "Add to Stack"}
+            <button onClick={() => handleAddToStack(tech)} className='btn btn-neutral mt-auto w-full rounded-xl' disabled={isAdded}>
+                {isAdded ? <p className='flex items-center gap-1 text-dev-gradient'><span><LuCheck className='text-xl text-purple-500' /></span>Added to Stock</p> : "Add to Stack"}
             </button>
         </div>
     );

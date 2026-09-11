@@ -1,4 +1,3 @@
-import React from "react";
 import type { TechDataType } from "../types/types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
