@@ -3,6 +3,7 @@ import Footer from "./components/Footer"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
 import Technologies from "./components/Technologies";
+import Spinner from "./components/Spinner";
 
 
 const fetchData = async()=>{
@@ -20,7 +21,7 @@ function App() {
     <Navbar></Navbar>
      <div className="divider"></div>
      <Hero></Hero>
-     <Suspense fallback={<p>Loading</p>}>
+     <Suspense fallback={<Spinner></Spinner>}>
       <Technologies promiseData={promiseData}></Technologies>
      </Suspense>
     
